@@ -6,15 +6,12 @@ namespace ConsoleFlood
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Use numbers 1 - 6 for changing values");
-            Console.WriteLine("Use SpaceBar for new game");
-            Console.WriteLine("Enter the Map size");
             Console.CursorVisible = false;
 
             //запуск eventloop и игры
             var eventLoop = new ConsoleFlood.Event();
             var game = new ConsoleFlood.Game();           
-            game.Start();
+            game.PrintingMap();
 
             eventLoop.OneHandler += game.One;
             eventLoop.TwoHandler += game.Two;

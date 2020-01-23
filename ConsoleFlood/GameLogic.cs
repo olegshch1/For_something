@@ -138,7 +138,7 @@ namespace ConsoleFlood
         /// <summary>
         /// Print method
         /// </summary>
-        private void PrintingMap()
+        public void PrintingMap()
         {
             Console.Clear();
             if (Flag)
@@ -170,11 +170,5 @@ namespace ConsoleFlood
                 Console.WriteLine($"Turn {Count}");
             }
         }
-
-        /// <summary>
-        /// first-time printing
-        /// </summary>
-        public void Start() => PrintingMap();
-        
     }
 }
