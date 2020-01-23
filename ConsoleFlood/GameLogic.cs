@@ -13,6 +13,8 @@ namespace ConsoleFlood
         //Markers
         public bool[][] Used { get; set; }
 
+        public bool Flag { get; set; }
+
         /// <summary>
         /// считывание карты
         /// </summary>
@@ -21,6 +23,8 @@ namespace ConsoleFlood
 
         public void NewGame()
         {
+            Flag = false;
+            Count = 0;
             Console.Clear();
             Console.WriteLine("Use numbers 1 - 6 for changing values");
             Console.WriteLine("Use SpaceBar for new game");
@@ -36,6 +40,8 @@ namespace ConsoleFlood
                     Map[i][j] = random.Next(1, 7);
                 }
             }
+
+            Check();
 
             Used = new bool[size][];
             for (int k = 0; k < size; k++)
@@ -69,8 +75,31 @@ namespace ConsoleFlood
                 }
             }
             Count++;
-            Algorithm(0, 0, number, Map[0][0]);           
-        } 
+            Algorithm(0, 0, number, Map[0][0]);
+            Check();          
+        }
+        
+        /// <summary>
+        /// Check if won
+        /// </summary>
+        private void Check()
+        {
+            int h = 0;
+            for (int i = 0; i < Map.Length; i++)
+            {
+                for (int j = 0; j < Map.Length; j++)
+                {
+                    if (Map[i][j] == Map[0][0])
+                    {
+                        h++;
+                    }
+                }
+            }
+            if (h == Map.Length * Map.Length)
+            {
+                Flag = true;
+            }
+        }
 
         /// <summary>
         /// Recurve algorithm
@@ -102,28 +131,22 @@ namespace ConsoleFlood
         }
 
         /// <summary>
-        /// печать карты
+        /// Event printing
         /// </summary>
-        public void Print(object sender, EventArgs args)
+        public void Print(object sender, EventArgs args) => PrintingMap();
+
+        /// <summary>
+        /// Print method
+        /// </summary>
+        private void PrintingMap()
         {
             Console.Clear();
-            int h = 0;
-            for(int i = 0; i < Map.Length; i++)
+            if (Flag)
             {
-                for(int j = 0; j < Map.Length; j++)
-                {
-                    if (Used[i][j])
-                    {
-                        h++;
-                    }
-                }
-            }
-            if (h==Map.Length*Map.Length)
-            {
-                Console.WriteLine($"W I N N E R for {Count - 1} turns");
+                Console.WriteLine($"W I N N E R for {Count} turns");
                 Console.WriteLine("Press SpaceBar for new game");
             }
-            
+
             else
             {
                 for (var i = 0; i < Map.Length; ++i)
@@ -135,16 +158,15 @@ namespace ConsoleFlood
                     Console.WriteLine();
                 }
                 Console.WriteLine();
-                for (var i = 0; i < Map.Length; ++i)
-                {
-                    for (var j = 0; j < Map[i].Length; ++j)
-                    {
-                        if(Used[i][j]) Console.Write($"T ");
-                        else Console.Write($"_ ");                       
-                    }
-                    Console.WriteLine();
-                }
-                Console.WriteLine(h);
+                //for (var i = 0; i < Map.Length; ++i)
+                //{
+                //    for (var j = 0; j < Map[i].Length; ++j)
+                //    {
+                //        if(Used[i][j]) Console.Write($"T ");
+                //        else Console.Write($"_ ");                       
+                //    }
+                //    Console.WriteLine();
+                //}
                 Console.WriteLine($"Turn {Count}");
             }
         }
@@ -152,27 +174,7 @@ namespace ConsoleFlood
         /// <summary>
         /// first-time printing
         /// </summary>
-        public void Start()
-        {
-            Console.Clear();
-            for (var i = 0; i < Map.Length; ++i)
-            {
-                for (var j = 0; j < Map[i].Length; ++j)
-                {
-                    Console.Write($"{Map[i][j]} ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            for (var i = 0; i < Map.Length; ++i)
-            {
-                for (var j = 0; j < Map[i].Length; ++j)
-                {
-                    if (Used[i][j]) Console.Write($"T ");
-                    else Console.Write($"_ ");
-                }
-                Console.WriteLine();
-            }
-        }
+        public void Start() => PrintingMap();
+        
     }
 }
