@@ -66,6 +66,9 @@ namespace ConsoleFlood
                     case ConsoleKey.Spacebar:
                         SpaceHandler(this, EventArgs.Empty);
                         break;
+                    case ConsoleKey.Enter:
+                        SpaceHandler(this, EventArgs.Empty);
+                        break;
                 }
             }
         }

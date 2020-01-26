@@ -144,7 +144,7 @@ namespace ConsoleFlood
             if (Flag)
             {
                 Console.WriteLine($"W I N N E R for {Count} turns");
-                Console.WriteLine("Press SpaceBar for new game");
+                Console.WriteLine("Press SpaceBar or Enter for new game");
             }
 
             else
