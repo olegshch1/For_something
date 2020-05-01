@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleFlood
 {
-    public class Game : IGame
+    public class TwoPlayerGame : IGame
     {
         //Game Map
         public int[][] Map { get; set; }
@@ -19,7 +23,7 @@ namespace ConsoleFlood
         /// считывание карты
         /// </summary>
         /// <param name="path">путь к файлу</param>
-        public Game() => NewGame();
+        public TwoPlayerGame() => NewGame();
 
         public void NewGame()
         {
@@ -64,25 +68,31 @@ namespace ConsoleFlood
         public void Five(object sender, EventArgs args) => Move(5);
         public void Six(object sender, EventArgs args) => Move(6);
         public void Space(object sender, EventArgs args) => NewGame();
-
+        
         /// <summary>
         /// Refilling map
         /// </summary>
-        /// <param name="number"></param>
-        private void Move(int number) 
+        private void Move(int number)
         {
-            for(int i = 0; i < Map.Length; i++)
+            for (int i = 0; i < Map.Length; i++)
             {
-                for(int j = 0; j < Map.Length; j++)
+                for (int j = 0; j < Map.Length; j++)
                 {
                     Used[i][j] = false;
                 }
             }
             Count++;
-            Algorithm(0, 0, number, Map[0][0]);
-            Check();          
+            if(Count % 2 == 0)
+            {
+                Algorithm(0, 0, number, Map[0][0]);
+            }
+            else
+            {
+                Algorithm(Map.Length - 1, Map.Length - 1, number, Map[Map.Length - 1][Map.Length - 1]);
+            }
+            Check();
         }
-        
+
         /// <summary>
         /// Check if won
         /// </summary>
@@ -116,22 +126,22 @@ namespace ConsoleFlood
         {
             Map[i][j] = num;
             Used[i][j] = true;
-            if (j + 1 < Map[i].Length && Map[i][j + 1] == current && !Used[i][j + 1]) 
+            if (j + 1 < Map[i].Length && Map[i][j + 1] == current && !Used[i][j + 1])
             {
                 Algorithm(i, j + 1, num, current);
             }
-            if (j - 1 >= 0 && Map[i][j - 1] == current && !Used[i][j - 1]) 
+            if (j - 1 >= 0 && Map[i][j - 1] == current && !Used[i][j - 1])
             {
                 Algorithm(i, j - 1, num, current);
             }
-            if (i + 1 < Map[i].Length && Map[i + 1][j] == current && !Used[i + 1][j]) 
+            if (i + 1 < Map[i].Length && Map[i + 1][j] == current && !Used[i + 1][j])
             {
                 Algorithm(i + 1, j, num, current);
-            }               
+            }
             if (i - 1 >= 0 && Map[i - 1][j] == current && !Used[i - 1][j])
             {
                 Algorithm(i - 1, j, num, current);
-            } 
+            }
         }
 
         /// <summary>

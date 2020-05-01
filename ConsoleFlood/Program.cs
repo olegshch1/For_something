@@ -9,8 +9,13 @@ namespace ConsoleFlood
             Console.CursorVisible = false;
 
             //запуск eventloop и игры
+            Console.WriteLine("Choose the mode: 1 player or 2 players");
+            int a = int.Parse(Console.ReadLine());
+            ConsoleFlood.IGame game = null;
             var eventLoop = new ConsoleFlood.Event();
-            var game = new ConsoleFlood.Game();           
+            if (a == 1) game = new ConsoleFlood.Game();
+            if (a == 2) game = new ConsoleFlood.TwoPlayerGame();
+            //var game = new ConsoleFlood.Game();           
             game.PrintingMap();
 
             eventLoop.OneHandler += game.One;
