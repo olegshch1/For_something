@@ -25,6 +25,30 @@ namespace App1
             Button button = (Button)sender;
             if(button.Text=="one player") game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
             if(button.Text=="two players") game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+
+            //game.PrintingMap();
+
+
+            Event eventLoop = new Event();
+
+            eventLoop.OneHandler += game.One;
+            eventLoop.TwoHandler += game.Two;
+            eventLoop.ThreeHandler += game.Three;
+            eventLoop.FourHandler += game.Four;
+            eventLoop.FiveHandler += game.Five;
+            eventLoop.SixHandler += game.Six;
+            eventLoop.SpaceHandler += game.Space;
+
+            eventLoop.OneHandler += game.Print;
+            eventLoop.TwoHandler += game.Print;
+            eventLoop.ThreeHandler += game.Print;
+            eventLoop.FourHandler += game.Print;
+            eventLoop.FiveHandler += game.Print;
+            eventLoop.SixHandler += game.Print;
+            eventLoop.SpaceHandler += game.Print;
+
+            eventLoop.Run();
+
             await Navigation.PushModalAsync(new Board());
 
         }

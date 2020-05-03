@@ -22,12 +22,7 @@ namespace App1
         /// <summary>
         /// Event printing
         /// </summary>
-        //void Print(object sender, EventArgs args);
-
-        /// <summary>
-        /// Print method
-        /// </summary>
-        //void PrintingMap();
+        void Print(object sender, EventArgs args);
 
         /// <summary>
         /// Change colors
