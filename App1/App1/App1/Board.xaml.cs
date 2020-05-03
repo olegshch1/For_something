@@ -12,18 +12,43 @@ namespace App1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Board : ContentPage
     {
-        public Board()
+        IGame game;
+        public Board(IGame game)
         {
             InitializeComponent();
+            this.game = game;
+            //Event eventLoop = new Event();
+
+            //eventLoop.OneHandler += game.One;
+            //eventLoop.TwoHandler += game.Two;
+            //eventLoop.ThreeHandler += game.Three;
+            //eventLoop.FourHandler += game.Four;
+            //eventLoop.FiveHandler += game.Five;
+            //eventLoop.SixHandler += game.Six;
+            //eventLoop.SpaceHandler += game.Space;
+
+            //eventLoop.OneHandler += game.Print;
+            //eventLoop.TwoHandler += game.Print;
+            //eventLoop.ThreeHandler += game.Print;
+            //eventLoop.FourHandler += game.Print;
+            //eventLoop.FiveHandler += game.Print;
+            //eventLoop.SixHandler += game.Print;
+            //eventLoop.SpaceHandler += game.Print;
+
+            //eventLoop.Run();
         }
 
         private void ColorButton_Clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            var parent = button.Parent.Parent;
-            Content.BackgroundColor = button.BackgroundColor;            
+            Content.BackgroundColor = button.BackgroundColor;
+            if (button.BackgroundColor == Color.Red)  game.Move(1); 
+            if (button.BackgroundColor == Color.Pink)  game.Move(2); 
+            if (button.BackgroundColor == Color.Green)  game.Move(3); 
+            if (button.BackgroundColor == Color.Blue)  game.Move(4); 
+            if (button.BackgroundColor == Color.Yellow)  game.Move(5); 
+            if (button.BackgroundColor == Color.Pink)  game.Move(6); 
         }
-
         async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

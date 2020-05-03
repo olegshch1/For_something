@@ -62,18 +62,18 @@ namespace App1
         /// <summary>
         /// Change colors
         /// </summary>
-        public void One(object sender, EventArgs args) => Move(1);
-        public void Two(object sender, EventArgs args) => Move(2);
-        public void Three(object sender, EventArgs args) => Move(3);
-        public void Four(object sender, EventArgs args) => Move(4);
-        public void Five(object sender, EventArgs args) => Move(5);
-        public void Six(object sender, EventArgs args) => Move(6);
-        public void Space(object sender, EventArgs args) => NewGame();
+        //public void One(object sender, EventArgs args) => Move(1);
+        //public void Two(object sender, EventArgs args) => Move(2);
+        //public void Three(object sender, EventArgs args) => Move(3);
+        //public void Four(object sender, EventArgs args) => Move(4);
+        //public void Five(object sender, EventArgs args) => Move(5);
+        //public void Six(object sender, EventArgs args) => Move(6);
+        //public void Space(object sender, EventArgs args) => NewGame();
 
         /// <summary>
         /// Refilling map
         /// </summary>
-        private void Move(int number)
+        public void Move(int number)
         {
             for (int i = 0; i < Map.Length; i++)
             {

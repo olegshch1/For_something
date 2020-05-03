@@ -31,7 +31,7 @@ namespace App1
             //eventLoop.Run();
 
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = new MainPage();            
         }
 
         protected override void OnStart()
