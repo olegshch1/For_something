@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Use numbers 1 - 6 for changing values, Use SpaceBar for new game. Enter the Map size:" 
+           HorizontalOptions="Center"
+           FontSize="Large"
+           VerticalOptions="CenterAndExpand" />
+        <StackLayout>
+            <Label x:Name="header"
+                Text="10"
+                HorizontalOptions="Center"
+                FontSize="Large"/>
+            <Slider x:Name="SizeSlider" 
+                Maximum="30"
+                Minimum="10"
+                Margin="10"
+                ValueChanged="Slider_ValueChanged"/>
+        </StackLayout>
+        <Button Text="one player"
+                Margin="10"
+                Clicked="Button_Clicked"/>
+        <Button Text="two players"
+                Margin="10"
+                Clicked="Button_Clicked"/>
+    </StackLayout>
+
+</ContentPage>

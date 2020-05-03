@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Board">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back"
+                     Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <FlexLayout Direction="Row"
+                        Padding="5"
+                        HorizontalOptions="EndAndExpand">
+                <Button BackgroundColor="Red"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                <Button BackgroundColor="Pink"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                <Button BackgroundColor="Green"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                <Button BackgroundColor="Blue"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                <Button BackgroundColor="Yellow"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                <Button BackgroundColor="Black"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+            </FlexLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
