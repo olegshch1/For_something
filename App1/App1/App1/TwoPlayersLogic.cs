@@ -34,7 +34,7 @@ namespace App1
         {
             Flag = false;
             Count = 0;
-            Console.Clear();
+            //Console.Clear();
             Map = new int[size][];
             var random = new Random();
             for (int i = 0; i < size; i++)
@@ -148,42 +148,42 @@ namespace App1
         /// <summary>
         /// Event printing
         /// </summary>
-        public void Print(object sender, EventArgs args) => PrintingMap();
+        //public void Print(object sender, EventArgs args) => PrintingMap();
 
         /// <summary>
         /// Print method
         /// </summary>
-        public void PrintingMap()
-        {
-            Console.Clear();
-            if (Flag)
-            {
-                Console.WriteLine($"W I N N E R for {Count} turns");
-                Console.WriteLine("Press SpaceBar or Enter for new game");
-            }
+        //public void PrintingMap()
+        //{
+        //    Console.Clear();
+        //    if (Flag)
+        //    {
+        //        Console.WriteLine($"W I N N E R for {Count} turns");
+        //        Console.WriteLine("Press SpaceBar or Enter for new game");
+        //    }
 
-            else
-            {
-                for (var i = 0; i < Map.Length; ++i)
-                {
-                    for (var j = 0; j < Map[i].Length; ++j)
-                    {
-                        Console.Write($"{Map[i][j]} ");
-                    }
-                    Console.WriteLine();
-                }
-                Console.WriteLine();
-                //for (var i = 0; i < Map.Length; ++i)
-                //{
-                //    for (var j = 0; j < Map[i].Length; ++j)
-                //    {
-                //        if(Used[i][j]) Console.Write($"T ");
-                //        else Console.Write($"_ ");                       
-                //    }
-                //    Console.WriteLine();
-                //}
-                Console.WriteLine($"Turn {Count}");
-            }
-        }
+        //    else
+        //    {
+        //        for (var i = 0; i < Map.Length; ++i)
+        //        {
+        //            for (var j = 0; j < Map[i].Length; ++j)
+        //            {
+        //                Console.Write($"{Map[i][j]} ");
+        //            }
+        //            Console.WriteLine();
+        //        }
+        //        Console.WriteLine();
+        //        //for (var i = 0; i < Map.Length; ++i)
+        //        //{
+        //        //    for (var j = 0; j < Map[i].Length; ++j)
+        //        //    {
+        //        //        if(Used[i][j]) Console.Write($"T ");
+        //        //        else Console.Write($"_ ");                       
+        //        //    }
+        //        //    Console.WriteLine();
+        //        //}
+        //        Console.WriteLine($"Turn {Count}");
+        //    }
+        //}
     }
 }

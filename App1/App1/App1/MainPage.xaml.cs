@@ -23,17 +23,17 @@ namespace App1
         async void Button_Clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            //if(button.Text=="one player") game = new Game();
-            //if(button.Text=="two players") game = new TwoPlayerGame();
+            if(button.Text=="one player") game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+            if(button.Text=="two players") game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
             await Navigation.PushModalAsync(new Board());
 
         }
 
-        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             var slider = (Slider)sender;
-            slider.Value = Math.Round(slider.Value);
-            header.Text = String.Format("{0:f1}", e.NewValue);
+            slider.Value = Convert.ToInt32(Math.Round(SizeSlider.Value));
+            header.Text = e.NewValue.ToString();
         }
     }
 }
