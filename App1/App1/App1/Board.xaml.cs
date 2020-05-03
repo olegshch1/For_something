@@ -17,14 +17,6 @@ namespace App1
         {
             InitializeComponent();
             this.game = game;
-            List<List<BoxView>> list = new List<List<BoxView>>();
-            for(int i = 0; i < game.Size; i++)
-            {
-                for(int j = 0; j < game.Size; j++)
-                {
-                    list[i][j] = new BoxView();
-                }
-            }
             //Event eventLoop = new Event();
 
             //eventLoop.OneHandler += game.One;
