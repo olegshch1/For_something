@@ -15,7 +15,8 @@ namespace App1
 
         public bool Flag { get; set; }
 
-        public int size;
+        public int Size { get; set; }
+        int size;
         /// <summary>
         /// считывание карты
         /// </summary>
@@ -23,6 +24,7 @@ namespace App1
         public Game(int size)
         {
             this.size = size;
+            this.Size = size;
             NewGame();
         }
 

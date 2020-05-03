@@ -18,7 +18,7 @@ namespace App1
         public bool[][] Used { get; set; }
 
         public bool Flag { get; set; }
-
+        public int Size { get; set; }
         public int size;
         /// <summary>
         /// считывание карты
@@ -27,6 +27,7 @@ namespace App1
         public TwoPlayerGame(int size)
         {
             this.size = size;
+            this.Size = size;
             NewGame();
         }
 

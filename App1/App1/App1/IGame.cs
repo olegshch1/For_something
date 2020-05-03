@@ -14,6 +14,7 @@ namespace App1
         //Counting moves
         int Count { get; set; }
 
+        int Size { get; set; }
         //Markers
         bool[][] Used { get; set; }
 
