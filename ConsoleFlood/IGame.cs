@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleFlood
 {
-    interface IGame
+    public interface IGame
     {
         //Game Map
         int[][] Map { get; set; }
