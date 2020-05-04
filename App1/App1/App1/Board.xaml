@@ -12,9 +12,11 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+                
+            </Grid>
 
             <FlexLayout Direction="Row"
                         Padding="5"

@@ -22,13 +22,17 @@ namespace App1
         async void Button_Clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(button.Text=="one player") game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
-            if(button.Text=="two players") game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+            if (button.Text == "one player")
+            {
+                game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+                await Navigation.PushModalAsync(new Board(game));
+            }
 
-            //game.PrintingMap();
-            
-
-            await Navigation.PushModalAsync(new Board(game));
+            if (button.Text == "two players")
+            {
+                game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+                await Navigation.PushModalAsync(new XamarinFlood.Host(game));
+            }           
 
         }
 
