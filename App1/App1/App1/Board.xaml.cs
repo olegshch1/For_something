@@ -15,10 +15,9 @@ namespace App1
         IGame game;
         public Board(IGame game)
         {
-            InitializeComponent();
             this.game = game;
             Grid grid = new Grid();
-            for(int i = 0; i < game.Size; i++)
+            for (int i = 0; i < game.Size; i++)
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
@@ -27,14 +26,16 @@ namespace App1
                 grid.RowDefinitions.Add(new RowDefinition());
             }
 
-            for(int i = 0; i < game.Size; i++)
+            for (int i = 0; i < game.Size; i++)
             {
-                for(int j = 0; j < game.Size; j++)
+                for (int j = 0; j < game.Size; j++)
                 {
                     BoxView cell = new BoxView();
                     grid.Children.Add(cell, i, j);
                 }
             }
+            InitializeComponent();
+            
             //Event eventLoop = new Event();
 
             //eventLoop.OneHandler += game.One;

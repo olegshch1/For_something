@@ -11,13 +11,6 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-
-            <Grid
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
-                
-            </Grid>
-
             <FlexLayout Direction="Row"
                         Padding="5"
                         HorizontalOptions="EndAndExpand">
