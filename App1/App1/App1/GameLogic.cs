@@ -15,16 +15,15 @@ namespace App1
 
         public bool Flag { get; set; }
 
-        public int Size { get; set; }
+        public int Size { get; set; } = 5;
         int size;
         /// <summary>
         /// считывание карты
         /// </summary>
         /// <param name="path">путь к файлу</param>
-        public Game(int size)
+        public Game()
         {
-            this.size = size;
-            this.Size = size;
+            size = Size;
             NewGame();
         }
 

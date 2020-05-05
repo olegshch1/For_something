@@ -9,7 +9,7 @@ namespace App1
     class GameBoard : AbsoluteLayout
     {
         // Alternative sizes make the tiles a tad small.
-        List<List<Tile>> tiles = new List<List<Tile>>();
+        public List<List<Tile>> tiles = new List<List<Tile>>();
         bool isGameInProgress;              // on first tap
         bool isGameInitialized;             // on first double-tap
         bool isGameEnded;
@@ -17,10 +17,11 @@ namespace App1
         // Events to notify page.
         public event EventHandler GameStarted;
         public event EventHandler<bool> GameEnded;
-        IGame game;
+        public IGame game;
         public int Size { get; set; } = 5;
         public GameBoard()
         {
+            game = new Game();
             for (int row = 0; row < Size; row++)
             {
                 tiles.Add(new List<Tile>());
@@ -57,6 +58,56 @@ namespace App1
             };
 
             NewGameInitialize();
+        }
+
+        public void Check()
+        {
+            foreach (List<Tile> list in tiles)
+            {
+                foreach (Tile tile in list)
+                {
+                    switch (game.Map[tile.Row][tile.Col])
+                    {
+                        case (1):
+                            tile.label.TextColor = Color.Red;
+                            tile.label.BackgroundColor = Color.Red;
+                            tile.BackgroundColor = Color.Red;
+                            tile.BorderColor = Color.Red;
+                            break;
+                        case (2):
+                            tile.label.TextColor = Color.Pink;
+                            tile.label.BackgroundColor = Color.Pink;
+                            tile.BackgroundColor = Color.Pink;
+                            tile.BorderColor = Color.Pink;
+                            break;
+                        case (3):
+                            tile.label.TextColor = Color.Green;
+                            tile.label.BackgroundColor = Color.Green;
+                            tile.BackgroundColor = Color.Green;
+                            tile.BorderColor = Color.Green;
+                            break;
+                        case (4):
+                            tile.label.TextColor = Color.Blue;
+                            tile.label.BackgroundColor = Color.Blue;
+                            tile.BackgroundColor = Color.Blue;
+                            tile.BorderColor = Color.Blue;
+                            break;
+                        case (5):
+                            tile.label.TextColor = Color.Yellow;
+                            tile.label.BackgroundColor = Color.Yellow;
+                            tile.BackgroundColor = Color.Yellow;
+                            tile.BorderColor = Color.Yellow;
+                            break;
+                        case (6):
+                            tile.label.TextColor = Color.Black;
+                            tile.label.BackgroundColor = Color.Black;
+                            tile.BackgroundColor = Color.Black;
+                            tile.BorderColor = Color.Black;
+                            break;
+                    }
+
+                }
+            }
         }
 
         public void NewGameInitialize()

@@ -24,8 +24,9 @@ namespace App1
             Button button = (Button)sender;
             if (button.Text == "one player")
             {
-                game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
-                await Navigation.PushModalAsync(new Board(game));
+                //game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+                game = new Game();
+                await Navigation.PushModalAsync(new Board());
             }
 
             if (button.Text == "two players")

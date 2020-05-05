@@ -14,13 +14,11 @@ namespace App1
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Board : ContentPage
     {
-        IGame game;
-        public Board(IGame game)
+        public Board()
         {
-            this.game = game;
             
             InitializeComponent();
-            
+            board.NewGameInitialize();
         }
 
         void OnMainContentViewSizeChanged(object sender, EventArgs args)
@@ -66,12 +64,13 @@ namespace App1
         {
             Button button = (Button)sender;
             Content.BackgroundColor = button.BackgroundColor;
-            if (button.BackgroundColor == Color.Red)  game.Move(1); 
-            if (button.BackgroundColor == Color.Pink)  game.Move(2); 
-            if (button.BackgroundColor == Color.Green)  game.Move(3); 
-            if (button.BackgroundColor == Color.Blue)  game.Move(4); 
-            if (button.BackgroundColor == Color.Yellow)  game.Move(5); 
-            if (button.BackgroundColor == Color.Pink)  game.Move(6); 
+            if (button.BackgroundColor == Color.Red)  board.game.Move(1); 
+            if (button.BackgroundColor == Color.Pink)  board.game.Move(2); 
+            if (button.BackgroundColor == Color.Green)  board.game.Move(3); 
+            if (button.BackgroundColor == Color.Blue)  board.game.Move(4); 
+            if (button.BackgroundColor == Color.Yellow)  board.game.Move(5); 
+            if (button.BackgroundColor == Color.Black)  board.game.Move(6);
+            board.Check();
         }
         async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
