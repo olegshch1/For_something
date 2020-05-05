@@ -59,70 +59,7 @@ namespace App1
             isGameInProgress = false;
             isGameInitialized = false;
             isGameEnded = false;
-        }
-
-        
-
-        public int BugCount
-        {
-            get
-            {
-                return BUGS;
-            }
-        }
-
-
-        // Not called until the first tile is double-tapped.
-        void DefineNewBoard(int tappedRow, int tappedCol)
-        {
-            // Begin the assignment of bugs.
-            Random random = new Random();
-            int bugCount = 0;
-
-            while (bugCount < BUGS)
-            {
-                // Get random row and column.
-                int row = random.Next(ROWS);
-                int col = random.Next(COLS);
-
-                // Skip it if it's already a bug.
-                if (tiles[row, col].IsBug)
-                {
-                    continue;
-                }
-
-                // Avoid the tappedRow & Col & surrounding ones.
-                if (row >= tappedRow - 1 &&
-                    row <= tappedRow + 1 &&
-                    col >= tappedCol - 1 &&
-                    col <= tappedCol + 1)
-                {
-                    continue;
-                }
-
-                // It's a bug!
-                tiles[row, col].IsBug = true;
-
-                
-
-                bugCount++;
-            }
-        }
-
-        void CycleThroughNeighbors(int row, int col, Action<int, int> callback)
-        {
-            int minRow = Math.Max(0, row - 1);
-            int maxRow = Math.Min(ROWS - 1, row + 1);
-            int minCol = Math.Max(0, col - 1);
-            int maxCol = Math.Min(COLS - 1, col + 1);
-
-            for (int neighborRow = minRow; neighborRow <= maxRow; neighborRow++)
-                for (int neighborCol = minCol; neighborCol <= maxCol; neighborCol++)
-                {
-                    if (neighborRow != row || neighborCol != col)
-                        callback(neighborRow, neighborCol);
-                }
-        }
+        }        
 
         void OnTileStatusChanged(object sender, TileStatus tileStatus)
         {
@@ -149,7 +86,6 @@ namespace App1
             {
                 if (!isGameInitialized)
                 {
-                    DefineNewBoard(changedTile.Row, changedTile.Col);
                     isGameInitialized = true;
                 }
 
