@@ -12,6 +12,9 @@
                 HorizontalOptions="CenterAndExpand" 
                 FontSize="Body"
                 TextColor="ForestGreen"/>
+            <Button Text="New Game"
+                    VerticalOptions="FillAndExpand"
+                    Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
