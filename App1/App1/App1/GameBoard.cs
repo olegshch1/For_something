@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 using Xamarin.Forms;
 
@@ -8,12 +9,7 @@ namespace App1
     class GameBoard : AbsoluteLayout
     {
         // Alternative sizes make the tiles a tad small.
-        const int COLS = 9;         // 16
-        const int ROWS = 9;         // 16
-        const int BUGS = 10;        // 40
-
-        Tile[,] tiles = new Tile[ROWS, COLS];
-        int flaggedTileCount;
+        List<List<Tile>> tiles = new List<List<Tile>>();
         bool isGameInProgress;              // on first tap
         bool isGameInitialized;             // on first double-tap
         bool isGameEnded;
@@ -21,29 +17,35 @@ namespace App1
         // Events to notify page.
         public event EventHandler GameStarted;
         public event EventHandler<bool> GameEnded;
-
+        IGame game;
+        public int Size { get; set; } = 5;
         public GameBoard()
         {
-            for (int row = 0; row < ROWS; row++)
-                for (int col = 0; col < COLS; col++)
+            for (int row = 0; row < Size; row++)
+            {
+                tiles.Add(new List<Tile>());
+                for (int col = 0; col < Size; col++)
                 {
                     Tile tile = new Tile(row, col);
                     tile.TileStatusChanged += OnTileStatusChanged;
                     this.Children.Add(tile);
-                    tiles[row, col] = tile;
+                    tiles[row].Add(tile);
                 }
+            }
 
             SizeChanged += (sender, args) =>
             {
-                double tileWidth = this.Width / COLS;
-                double tileHeight = this.Height / ROWS;
+                double tileWidth = this.Width / Size;
+                double tileHeight = this.Height / Size;
 
-                foreach (Tile tile in tiles)
-                {
-                    Rectangle bounds = new Rectangle(tile.Col * tileWidth,
-                                                     tile.Row * tileHeight,
-                                                     tileWidth, tileHeight);
-                    AbsoluteLayout.SetLayoutBounds(tile, bounds);
+                foreach (List<Tile> list in tiles) {
+                    foreach (Tile tile in list)
+                    {
+                        Rectangle bounds = new Rectangle(tile.Col * tileWidth,
+                                                         tile.Row * tileHeight,
+                                                         tileWidth, tileHeight);
+                        AbsoluteLayout.SetLayoutBounds(tile, bounds);
+                    }
                 }
             };
 
@@ -53,8 +55,11 @@ namespace App1
         public void NewGameInitialize()
         {
             // Clear all the tiles.
-            foreach (Tile tile in tiles)
-                tile.Initialize();
+            foreach (List<Tile> list in tiles)
+            {
+                foreach (Tile tile in list)
+                    tile.Initialize();
+            }
 
             isGameInProgress = false;
             isGameInitialized = false;
@@ -105,16 +110,6 @@ namespace App1
 
             // Check for a win.
             bool hasWon = true;
-
-            foreach (Tile til in tiles)
-            {
-                if (til.IsBug && til.Status != TileStatus.Flagged)
-                    hasWon = false;
-
-                if (!til.IsBug && til.Status != TileStatus.Exposed)
-                    hasWon = false;
-            }
-
             // If there's a win, celebrate!
             if (hasWon)
             {

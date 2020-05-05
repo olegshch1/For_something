@@ -28,15 +28,15 @@ namespace App1
             this.Row = row;
             this.Col = col;
 
-            this.BackgroundColor = Color.Yellow;
-            this.BorderColor = Color.Blue;
-            this.Padding = 2;
+            this.BackgroundColor = Color.Black;
+            this.BorderColor = Color.Yellow;
+            this.Padding = 0;
 
             label = new Label
             {
                 Text = " ",
                 TextColor = Color.Yellow,
-                BackgroundColor = Color.Blue,
+                BackgroundColor = Color.Yellow,
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
             };

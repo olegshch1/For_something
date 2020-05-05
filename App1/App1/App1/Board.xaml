@@ -11,18 +11,18 @@
             <On Platform="Android, UWP" Value="0, 0, 0, 0" />
         </OnPlatform>
     </ContentPage.Padding>
-    <ContentView SizeChanged="OnMainContentViewSizeChanged">
+    <!--<ContentView SizeChanged="OnMainContentViewSizeChanged">
         <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
-            <!--<Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="7*" />
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0" />
                 <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>-->
+            </Grid.ColumnDefinitions>
             <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
-                <!-- Single-cell Grid for Board and overlays. -->
+                --><!-- Single-cell Grid for Board and overlays. --><!--
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -35,19 +35,44 @@
                 </Grid>
             </ContentView>
         </Grid>
-    </ContentView>
+    </ContentView>-->
     
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Back"
                      Clicked="ToolbarItem_Clicked"/>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
-        <StackLayout>
+        <ContentView SizeChanged="OnMainContentViewSizeChanged">
+            <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="4*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
+                    <!-- Single-cell Grid for Board and overlays. -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <local:GameBoard x:Name="board"/>
+
+                    </Grid>
+                </ContentView>
+            </Grid>
+            <StackLayout>
             <FlexLayout Direction="Row"
                         Padding="5"
-                        HorizontalOptions="EndAndExpand">
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="EndAndExpand">
                 <Button BackgroundColor="Red"
                     Clicked="ColorButton_Clicked"
                     Margin="5"/>
@@ -69,5 +94,7 @@
             </FlexLayout>
 
         </StackLayout>
+        </ContentView>
+        
     </ContentPage.Content>
 </ContentPage>

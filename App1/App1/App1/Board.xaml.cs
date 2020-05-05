@@ -18,24 +18,7 @@ namespace App1
         public Board(IGame game)
         {
             this.game = game;
-            Grid grid = new Grid();
-            for (int i = 0; i < game.Size; i++)
-            {
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-            for (int i = 0; i < game.Size; i++)
-            {
-                grid.RowDefinitions.Add(new RowDefinition());
-            }
-
-            for (int i = 0; i < game.Size; i++)
-            {
-                for (int j = 0; j < game.Size; j++)
-                {
-                    BoxView cell = new BoxView();
-                    grid.Children.Add(cell, i, j);
-                }
-            }
+            
             InitializeComponent();
             
         }
@@ -48,24 +31,24 @@ namespace App1
 
             bool isLandscape = width > height;
 
-            //if (isLandscape)
-            //{
-            //    mainGrid.RowDefinitions[0].Height = 0;
-            //    mainGrid.RowDefinitions[1].Height = new GridLength(1, GridUnitType.Star);
+            if (isLandscape)
+            {
+                mainGrid.RowDefinitions[0].Height = 0;
+                mainGrid.RowDefinitions[1].Height = new GridLength(1, GridUnitType.Star);
 
-            //    mainGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-            //    mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                mainGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
 
-            //}
-            //else // portrait
-            //{
-            //    mainGrid.RowDefinitions[0].Height = new GridLength(3, GridUnitType.Star);
-            //    mainGrid.RowDefinitions[1].Height = new GridLength(5, GridUnitType.Star);
+            }
+            else // portrait
+            {
+                mainGrid.RowDefinitions[0].Height = new GridLength(3, GridUnitType.Star);
+                mainGrid.RowDefinitions[1].Height = new GridLength(5, GridUnitType.Star);
 
-            //    mainGrid.ColumnDefinitions[0].Width = 0;
-            //    mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                mainGrid.ColumnDefinitions[0].Width = 0;
+                mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
 
-            //}
+            }
         }
         void OnBoardContentViewSizeChanged(object sender, EventArgs args)
         {
