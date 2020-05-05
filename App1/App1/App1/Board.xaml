@@ -44,7 +44,9 @@
     </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
-        <ContentView SizeChanged="OnMainContentViewSizeChanged">
+        
+            <StackLayout>
+               <ContentView SizeChanged="OnMainContentViewSizeChanged">
             <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*" />
@@ -67,8 +69,8 @@
 
                     </Grid>
                 </ContentView>
-            </Grid>
-            <StackLayout>
+            </Grid> 
+             </ContentView>
             <FlexLayout Direction="Row"
                         Padding="5"
                         HorizontalOptions="EndAndExpand"
@@ -94,7 +96,7 @@
             </FlexLayout>
 
         </StackLayout>
-        </ContentView>
+        
         
     </ContentPage.Content>
 </ContentPage>
