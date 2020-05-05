@@ -31,17 +31,18 @@ namespace App1
 
             if (button.Text == "two players")
             {
-                game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+                //game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
+                game = new TwoPlayerGame();
                 await Navigation.PushModalAsync(new XamarinFlood.Host(game));
             }           
 
         }
 
-        void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            var slider = (Slider)sender;
-            slider.Value = Convert.ToInt32(Math.Round(SizeSlider.Value));
-            header.Text = e.NewValue.ToString();
-        }
+        //void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    var slider = (Slider)sender;
+        //    slider.Value = Convert.ToInt32(Math.Round(SizeSlider.Value));
+        //    header.Text = e.NewValue.ToString();
+        //}
     }
 }

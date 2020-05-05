@@ -30,6 +30,12 @@ namespace App1
             this.Size = size;
             NewGame();
         }
+        public TwoPlayerGame()
+        {
+            this.size = 10;
+            this.Size = size;
+            NewGame();
+        }
 
         public void NewGame()
         {

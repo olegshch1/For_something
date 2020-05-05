@@ -63,7 +63,6 @@ namespace App1
         private void ColorButton_Clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            Content.BackgroundColor = button.BackgroundColor;
             if (button.BackgroundColor == Color.Red)  board.game.Move(1); 
             if (button.BackgroundColor == Color.Pink)  board.game.Move(2); 
             if (button.BackgroundColor == Color.Green)  board.game.Move(3); 

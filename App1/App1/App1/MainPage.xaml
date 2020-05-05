@@ -12,7 +12,7 @@
            HorizontalOptions="Center"
            FontSize="Large"
            VerticalOptions="CenterAndExpand" />
-        <StackLayout>
+        <!--<StackLayout>
             <Label x:Name="header"
                 Text="10"
                 HorizontalOptions="Center"
@@ -22,13 +22,15 @@
                 Minimum="10"
                 Margin="10"
                 ValueChanged="Slider_ValueChanged"/>
-        </StackLayout>
+        </StackLayout>-->
         <Button Text="one player"
                 Margin="10"
+                VerticalOptions="EndAndExpand"
                 Clicked="Button_Clicked"/>
         <Button Text="two players"
                 Margin="10"
-                Clicked="Button_Clicked"/>
+                Clicked="Button_Clicked"
+                VerticalOptions="EndAndExpand"/>
     </StackLayout>
 
 </ContentPage>

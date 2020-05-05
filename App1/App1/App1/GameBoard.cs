@@ -27,19 +27,13 @@ namespace App1
                 tiles.Add(new List<Tile>());
                 for (int col = 0; col < Size; col++)
                 {
-                    Tile tile = new Tile(row, col);
-                    if ((col + row) % 2 == 0)
-                    {
-                        tile.label.TextColor = Color.Black;
-                        tile.label.BackgroundColor = Color.Black;
-                        tile.BackgroundColor = Color.Black;
-                        tile.BorderColor = Color.Black;
-                    }
+                    Tile tile = new Tile(row, col);                    
                     tile.TileStatusChanged += OnTileStatusChanged;
                     this.Children.Add(tile);
                     tiles[row].Add(tile);
                 }
             }
+            Check();
 
             SizeChanged += (sender, args) =>
             {
