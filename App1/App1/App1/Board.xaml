@@ -13,18 +13,14 @@
     </ContentPage.Padding>
     <ContentView SizeChanged="OnMainContentViewSizeChanged">
         <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
-            <Grid.RowDefinitions>
+            <!--<Grid.RowDefinitions>
                 <RowDefinition Height="7*" />
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0" />
                 <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <StackLayout x:Name="textStack" Grid.Row="0" Grid.Column="1" Spacing="0">
-                <!-- Make this a binding??? -->
-                <Label x:Name="timeLabel" Text="0:00" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </Grid.ColumnDefinitions>-->
             <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
                 <!-- Single-cell Grid for Board and overlays. -->
                 <Grid>
@@ -34,9 +30,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <local:GameBoard x:Name="board" />
-                    <Button x:Name="playAgainButton" Text=" Play Another Game? " HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnplayAgainButtonClicked"
-                            BorderColor="Black" BorderWidth="2" BackgroundColor="White" TextColor="Black" />
+                    <local:GameBoard x:Name="board"/>
+                    
                 </Grid>
             </ContentView>
         </Grid>
