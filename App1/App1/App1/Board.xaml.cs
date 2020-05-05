@@ -70,6 +70,7 @@ namespace App1
             if (button.BackgroundColor == Color.Yellow)  board.game.Move(5); 
             if (button.BackgroundColor == Color.Black)  board.game.Move(6);
             board.Check();
+            if (board.game.Flag) Navigation.PushModalAsync(new XamarinFlood.FinishPage());
         }
         async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
