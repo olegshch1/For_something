@@ -32,10 +32,10 @@ namespace App1
             if (isLandscape)
             {
                 mainGrid.RowDefinitions[0].Height = 0;
-                mainGrid.RowDefinitions[1].Height = new GridLength(1, GridUnitType.Star);
+                //mainGrid.RowDefinitions[1].Height = new GridLength(1, GridUnitType.Star);
 
                 mainGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
-                mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+                //mainGrid.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
 
             }
             else // portrait

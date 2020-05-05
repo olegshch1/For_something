@@ -18,7 +18,7 @@ namespace App1
         public event EventHandler GameStarted;
         public event EventHandler<bool> GameEnded;
         public IGame game;
-        public int Size { get; set; } = 4;
+        public int Size { get; set; } = 10;
         public GameBoard()
         {
             game = new Game();
