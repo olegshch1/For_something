@@ -47,29 +47,29 @@
         
             <StackLayout>
                <ContentView SizeChanged="OnMainContentViewSizeChanged">
-            <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="7*" />
-                    <RowDefinition Height="4*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
-                    <!-- Single-cell Grid for Board and overlays. -->
-                    <Grid>
+                    <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="4*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <local:GameBoard x:Name="board"/>
+                        <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
+                            <!-- Single-cell Grid for Board and overlays. -->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <local:GameBoard x:Name="board"/>
 
-                    </Grid>
-                </ContentView>
-            </Grid> 
+                            </Grid>
+                        </ContentView>
+                    </Grid> 
              </ContentView>
             <FlexLayout Direction="Row"
                         Padding="5"
@@ -95,7 +95,7 @@
                     Margin="5"/>
             </FlexLayout>
 
-        </StackLayout>
+            </StackLayout>
         
         
     </ContentPage.Content>
