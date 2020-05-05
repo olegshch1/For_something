@@ -15,7 +15,7 @@ namespace App1
 
         public bool Flag { get; set; }
 
-        public int Size { get; set; } = 5;
+        public int Size { get; set; } = 4;
         int size;
         /// <summary>
         /// считывание карты

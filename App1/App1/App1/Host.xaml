@@ -13,6 +13,8 @@
             <Button Text="search for a game"
                 Margin="10"
                 Clicked="Button_Clicked"/>
+            <Label Text="Multiplayer is not available now. It will be in future updates"
+                   FontSize="Large"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -8,7 +8,7 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Use numbers 1 - 6 for changing values, Use SpaceBar for new game. Enter the Map size:" 
+        <Label Text="Use numbers colored buttons to change color. Fill the whole board with one color" 
            HorizontalOptions="Center"
            FontSize="Large"
            VerticalOptions="CenterAndExpand" />
