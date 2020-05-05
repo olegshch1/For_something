@@ -9,7 +9,9 @@
         <StackLayout>
             <Label Text="Congratulations!!!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                FontSize="Body"
+                TextColor="ForestGreen"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

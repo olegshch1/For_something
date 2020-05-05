@@ -71,7 +71,12 @@
                         </ContentView>
                     </Grid> 
              </ContentView>
-            <FlexLayout Direction="Row"
+            <StackLayout>
+                <Label x:Name="counter"
+                       Text="0"
+                       HorizontalOptions="Center"
+                       FontSize="Medium"/>
+                <FlexLayout Direction="Row"
                         Padding="5"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="EndAndExpand">
@@ -94,6 +99,8 @@
                     Clicked="ColorButton_Clicked"
                     Margin="5"/>
             </FlexLayout>
+            </StackLayout>
+             
 
             </StackLayout>
         
