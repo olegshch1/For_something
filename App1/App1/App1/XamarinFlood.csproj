@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Event.cs" />
     <Compile Remove="SecondBoard.cs" />
   </ItemGroup>
 
