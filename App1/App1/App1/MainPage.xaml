@@ -25,12 +25,12 @@
         </StackLayout>-->
         <Button Text="one player"
                 Margin="10"
-                VerticalOptions="EndAndExpand"
+                VerticalOptions="FillAndExpand"
                 Clicked="Button_Clicked"/>
         <Button Text="two players"
                 Margin="10"
                 Clicked="Button_Clicked"
-                VerticalOptions="EndAndExpand"/>
+                VerticalOptions="FillAndExpand"/>
     </StackLayout>
 
 </ContentPage>
