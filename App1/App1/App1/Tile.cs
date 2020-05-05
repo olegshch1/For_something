@@ -17,7 +17,7 @@ namespace App1
     class Tile : Frame
     {
         TileStatus tileStatus = TileStatus.Hidden;
-        Label label;
+        public Label label;
         bool doNotFireEvent;
 
         public event EventHandler<TileStatus> TileStatusChanged;
