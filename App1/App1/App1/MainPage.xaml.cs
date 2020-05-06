@@ -25,15 +25,16 @@ namespace App1
             if (button.Text == "one player")
             {
                 //game = new Game(Convert.ToInt32(Math.Round(SizeSlider.Value)));
-                game = new Game();
+                //game = new Game();
                 await Navigation.PushModalAsync(new Board());
             }
 
             if (button.Text == "two players")
             {
                 //game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
-                game = new TwoPlayerGame();
-                await Navigation.PushModalAsync(new XamarinFlood.Host(game));
+                //game = new TwoPlayerGame();
+                //await Navigation.PushModalAsync(new XamarinFlood.Host(game));
+                await Navigation.PushModalAsync(new XamarinFlood.TwoPlayerBoard());
             }           
 
         }

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinFlood;assembly=XamarinFlood"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinFlood.TwoPlayerBoard">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="Android, UWP" Value="0, 0, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ContentView SizeChanged="OnMainContentViewSizeChanged">
+                <Grid x:Name="twomainGrid" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="350*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0" />
+                    </Grid.ColumnDefinitions>
+                    <ContentView Grid.Row="1" Grid.Column="0" SizeChanged="OnBoardContentViewSizeChanged" BackgroundColor="Red">
+                        <!-- Single-cell Grid for Board and overlays. -->
+                        <Grid>
+                            <local:TwoPlayerGameBoard x:Name="twoboard"/>
+
+                        </Grid>
+                    </ContentView>
+                </Grid>
+            </ContentView>
+            <StackLayout>
+                <Label x:Name="turn"
+                       Text="down-right player's turn"
+                       HorizontalOptions="Center"
+                       FontSize="Medium"/>
+                <Label x:Name="counter"
+                       Text="0"
+                       HorizontalOptions="Center"
+                       FontSize="Medium"/>
+                <FlexLayout Direction="Row"
+                        Padding="5"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="EndAndExpand">
+                    <Button BackgroundColor="Red"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                    <Button BackgroundColor="Pink"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                    <Button BackgroundColor="Green"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                    <Button BackgroundColor="Blue"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                    <Button BackgroundColor="Yellow"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                    <Button BackgroundColor="Black"
+                    Clicked="ColorButton_Clicked"
+                    Margin="5"/>
+                </FlexLayout>
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

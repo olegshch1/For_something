@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Net;
 namespace App1
 {
     public class TwoPlayerGame : IGame
@@ -96,7 +96,7 @@ namespace App1
             }
             else
             {
-                Algorithm(Map.Length - 1, Map.Length - 1, number, Map[Map.Length - 1][Map.Length - 1]);
+                OppositeAlgorithm(Map.Length - 1, Map.Length - 1, number, Map[Map.Length - 1][Map.Length - 1]);
             }
             Check();
         }
@@ -132,6 +132,8 @@ namespace App1
         /// <param name="current">current number</param>
         private void Algorithm(int i, int j, int num, int current)
         {
+            if (i == Map.Length - 1 && j == Map.Length - 1) 
+                Flag = true;
             Map[i][j] = num;
             Used[i][j] = true;
             if (j + 1 < Map[i].Length && Map[i][j + 1] == current && !Used[i][j + 1])
@@ -152,45 +154,28 @@ namespace App1
             }
         }
 
-        /// <summary>
-        /// Event printing
-        /// </summary>
-        public void Print(object sender, EventArgs args) => PrintingMap();
-
-        /// <summary>
-        /// Print method
-        /// </summary>
-        public void PrintingMap()
+        private void OppositeAlgorithm(int i, int j, int num, int current)
         {
-            //Console.Clear();
-            //if (Flag)
-            //{
-            //    Console.WriteLine($"W I N N E R for {Count} turns");
-            //    Console.WriteLine("Press SpaceBar or Enter for new game");
-            //}
-
-            //else
-            //{
-            //    for (var i = 0; i < Map.Length; ++i)
-            //    {
-            //        for (var j = 0; j < Map[i].Length; ++j)
-            //        {
-            //            Console.Write($"{Map[i][j]} ");
-            //        }
-            //        Console.WriteLine();
-            //    }
-            //    Console.WriteLine();
-            //    //for (var i = 0; i < Map.Length; ++i)
-            //    //{
-            //    //    for (var j = 0; j < Map[i].Length; ++j)
-            //    //    {
-            //    //        if(Used[i][j]) Console.Write($"T ");
-            //    //        else Console.Write($"_ ");                       
-            //    //    }
-            //    //    Console.WriteLine();
-            //    //}
-            //    Console.WriteLine($"Turn {Count}");
-            //}
+            if (i == 0 && j == 0) 
+                Flag = true;
+            Map[i][j] = num;
+            Used[i][j] = true;
+            if (j + 1 < Map[i].Length && Map[i][j + 1] == current && !Used[i][j + 1])
+            {
+                OppositeAlgorithm(i, j + 1, num, current);
+            }
+            if (j - 1 >= 0 && Map[i][j - 1] == current && !Used[i][j - 1])
+            {
+                OppositeAlgorithm(i, j - 1, num, current);
+            }
+            if (i + 1 < Map[i].Length && Map[i + 1][j] == current && !Used[i + 1][j])
+            {
+                OppositeAlgorithm(i + 1, j, num, current);
+            }
+            if (i - 1 >= 0 && Map[i - 1][j] == current && !Used[i - 1][j])
+            {
+                OppositeAlgorithm(i - 1, j, num, current);
+            }
         }
     }
 }

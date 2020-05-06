@@ -11,37 +11,6 @@
             <On Platform="Android, UWP" Value="0, 0, 0, 0" />
         </OnPlatform>
     </ContentPage.Padding>
-    <!--<ContentView SizeChanged="OnMainContentViewSizeChanged">
-        <Grid x:Name="mainGrid" ColumnSpacing="0" RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="7*" />
-                <RowDefinition Height="4*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
-                --><!-- Single-cell Grid for Board and overlays. --><!--
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <local:GameBoard x:Name="board"/>
-                    
-                </Grid>
-            </ContentView>
-        </Grid>
-    </ContentView>-->
-    
-    
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Back"
-                     Clicked="ToolbarItem_Clicked"/>
-    </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
         
@@ -58,14 +27,8 @@
                         </Grid.ColumnDefinitions>
                         <ContentView Grid.Row="1" Grid.Column="0" SizeChanged="OnBoardContentViewSizeChanged" BackgroundColor="Red">
                             <!-- Single-cell Grid for Board and overlays. -->
-                            <Grid>
-                                <!--<Grid.RowDefinitions>
-                                    <RowDefinition Height="2*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>-->
-                                <local:GameBoard x:Name="board"/>
+                        <Grid>
+                            <local:GameBoard x:Name="board"/>
 
                             </Grid>
                         </ContentView>

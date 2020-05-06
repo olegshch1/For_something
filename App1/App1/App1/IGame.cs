@@ -20,22 +20,6 @@ namespace App1
 
         bool Flag { get; set; }
 
-        /// <summary>
-        /// Event printing
-        /// </summary>
-        void Print(object sender, EventArgs args);
-
         void Move(int number);
-
-        /// <summary>
-        /// Change colors
-        /// </summary>
-        //void One(object sender, EventArgs args);
-        //void Two(object sender, EventArgs args);
-        //void Three(object sender, EventArgs args);
-        //void Four(object sender, EventArgs args);
-        //void Five(object sender, EventArgs args);
-        //void Six(object sender, EventArgs args);
-        //void Space(object sender, EventArgs args);
     }
 }
