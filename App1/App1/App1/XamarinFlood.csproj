@@ -11,8 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BadFinishPage.xaml.cs" />
     <Compile Remove="Event.cs" />
     <Compile Remove="SecondBoard.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="BadFinishPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>

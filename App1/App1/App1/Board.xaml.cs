@@ -74,7 +74,16 @@ namespace App1
             int count = Convert.ToInt32(counter.Text);
             count++;
             counter.Text = count.ToString();
-            if (board.game.Flag) Navigation.PushModalAsync(new XamarinFlood.FinishPage());
+            if (board.game.Flag)
+            {
+                counter.Text = "YOU HAVE WON";
+                Navigation.PushModalAsync(new XamarinFlood.FinishPage());
+            }
+            if (!board.game.Flag && count>=20)
+            {
+              counter.Text = "YOU HAVE LOST";                
+                Navigation.PushModalAsync(new XamarinFlood.FinishPage());
+            }
         }
         async void ToolbarItem_Clicked(object sender, EventArgs e)
         {

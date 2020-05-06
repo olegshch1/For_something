@@ -4,17 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinFlood.FinishPage">
+             x:Class="XamarinFlood.BadFinishPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Game is over"
+            <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                FontSize="Body"
-                TextColor="ForestGreen"/>
-            <Button Text="New Game"
-                    VerticalOptions="FillAndExpand"
-                    Clicked="Button_Clicked"/>
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

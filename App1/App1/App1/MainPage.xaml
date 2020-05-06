@@ -8,7 +8,7 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Use numbers colored buttons to change color. Fill the whole board with one color. You start from left-top cell." 
+        <Label Text="You have 20 moves. Use numbers colored buttons to change color. Fill the whole board with one color. You start from left-top cell." 
            HorizontalOptions="Center"
            FontSize="Large"
            VerticalOptions="CenterAndExpand" />
