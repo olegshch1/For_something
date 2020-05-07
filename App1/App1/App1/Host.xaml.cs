@@ -13,7 +13,7 @@ namespace XamarinFlood
     public partial class Host : ContentPage
     {
         App1.IGame game;
-        public Host(App1.IGame game)
+        public Host()
         {
             InitializeComponent();
             this.game = game;

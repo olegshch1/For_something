@@ -34,7 +34,7 @@ namespace App1
                 //game = new TwoPlayerGame(Convert.ToInt32(Math.Round(SizeSlider.Value)));
                 //game = new TwoPlayerGame();
                 //await Navigation.PushModalAsync(new XamarinFlood.Host(game));
-                await Navigation.PushModalAsync(new XamarinFlood.TwoPlayerBoard());
+                await Navigation.PushModalAsync(new XamarinFlood.ChooseMultiplayer());
             }           
 
         }
