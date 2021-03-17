@@ -7,32 +7,48 @@ using System.Threading.Tasks;
 
 namespace Indexing
 {
-    class Stemmer
+    /// <summary>
+    /// класс, в котором содержимое из файла токенизируется, стеммится и индексируется по SPIMI
+    /// </summary>
+    public class Stemmer
     {
+        /// <summary>
+        /// библиотечный стеммер
+        /// </summary>
         private Iveonik.Stemmers.RussianStemmer stem = new Iveonik.Stemmers.RussianStemmer();
         
+        /// <summary>
+        /// здесь хранится результат индексирования
+        /// </summary>
         private Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
 
-        private int counterLine;
+        public Stemmer() {}
 
-        public Stemmer()
-        {
-        }
-
+        /// <summary>
+        /// взятие результата
+        /// </summary>
+        /// <returns>терм-места</returns>
         public Dictionary<string, List<string>> GetDict()
         {
             return dict;
         }
 
+        /// <summary>
+        /// обрабатывает текстовый файл на русском языке
+        /// </summary>
+        /// <param name="path"></param>
         public void StemFile(string path)
         {
             Console.WriteLine($"stemming file in path== {path}");
-            counterLine = 1;
+
+            /// счет строк в файле
+            var counterLine = 1;
             using (var reader = new StreamReader(path))
             {
                 string line = reader.ReadLine();
                 while (line != null)
                 {
+                    ///счет номера слов в строке
                     var counterWord = 1;
                     foreach (var res in line.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                     {                        

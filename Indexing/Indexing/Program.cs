@@ -10,6 +10,10 @@ namespace Indexing
 {
     class Program
     {   
+        /// <summary>
+        /// вывод на печать всего словаря
+        /// </summary>
+        /// <param name="result"></param>
         static void Print(Dictionary<string, List<string>> result)
         {
             foreach (var item in result)
@@ -23,11 +27,16 @@ namespace Indexing
             }
         }
 
+        /// <summary>
+        /// петля поиска
+        /// </summary>
+        /// <param name="dict">то, где ищем</param>
         static void Loop(Dictionary<string, List<string>> dict)
         {
             Console.WriteLine("Search is running");
             Console.WriteLine("Write 'exit' for exit");
             Console.WriteLine("Write 'print dict' for seeing all dictionary");
+
             var stem = new Iveonik.Stemmers.RussianStemmer();
             var s = Console.ReadLine();
             while (s != "exit")
@@ -38,6 +47,7 @@ namespace Indexing
                     foreach (var res in s.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                     {
                         var ss = stem.Stem(res);
+                        Console.WriteLine("'" + ss + "'");
                         if (dict.ContainsKey(ss))
                         {
                             var paths = dict[ss];
@@ -51,11 +61,15 @@ namespace Indexing
                             Console.WriteLine("Absolutely nothing");
                         }
                     }
-                }               
+                }
+                Console.WriteLine("==================================");
                 s = Console.ReadLine();
             }
         }
 
+        /// <summary>
+        /// запуск индексации и поисковика
+        /// </summary>
         static void Main(string[] args)
         {
             var stemmer = new Stemmer();
