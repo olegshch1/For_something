@@ -15,7 +15,9 @@ namespace Indexing
 
         private int counterLine;
 
-        public Stemmer() { }
+        public Stemmer()
+        {
+        }
 
         public Dictionary<string, List<string>> GetDict()
         {
@@ -24,6 +26,7 @@ namespace Indexing
 
         public void StemFile(string path)
         {
+            Console.WriteLine($"stemming file in path== {path}");
             counterLine = 1;
             using (var reader = new StreamReader(path))
             {
