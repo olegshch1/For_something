@@ -73,7 +73,7 @@ namespace Indexing
         static void Main(string[] args)
         {
             var stemmer = new Stemmer();
-            var files = Directory.GetFiles("..\\..\\Texts");
+            var files = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Texts");
             foreach (var pathFile in files)
             {
                 stemmer.StemFile(pathFile);
