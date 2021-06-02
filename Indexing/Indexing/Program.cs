@@ -72,13 +72,15 @@ namespace Indexing
         /// </summary>
         static void Main(string[] args)
         {
-            var stemmer = new Indexer();
+            var indxr = new Indexer();
             var files = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Texts");
+            var docCounter = 1;
             foreach (var pathFile in files)
             {
-                stemmer.StemFile(pathFile);
+                indxr.StemFile(pathFile, docCounter);
+                docCounter++;
             }
-            var result = stemmer.GetDict();
+            var result = indxr.GetDict();
             Loop(result);
         }
     }

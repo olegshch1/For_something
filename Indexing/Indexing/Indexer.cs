@@ -34,11 +34,12 @@ namespace Indexing
         }
 
         /// <summary>
-        /// обрабатывает текстовый файл на русском языке
+        /// обрабатывает текстовый файл на русском языке, создает текстовый локальный словарь
         /// </summary>
         /// <param name="path"></param>
-        public void StemFile(string path)
+        public void StemFile(string path, int docCounter)
         {
+            var localdict = new Dictionary<string, List<(string, int, int)>>();
             Console.WriteLine($"stemming file in path== {path}");
 
             /// счет строк в файле
@@ -53,16 +54,16 @@ namespace Indexing
                     foreach (var res in line.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                     {                        
                         var ss = stem.Stem(res);
-                        if (!dict.ContainsKey(ss))
+                        if (!localdict.ContainsKey(ss))
                         {
                             var local = new List<(string, int, int)>();
                             local.Add(($"path= {path}", counterLine, counterWord));
-                            dict.Add(ss, local);
+                            localdict.Add(ss, local);
                         }
                         else
                         {
                             List<(string, int, int)> value;
-                            dict.TryGetValue(ss, out value);
+                            localdict.TryGetValue(ss, out value);
                             value.Add(($"path= {path}", counterLine, counterWord));
                         }
                         counterWord++;
@@ -71,26 +72,55 @@ namespace Indexing
                     line = reader.ReadLine();
                 }
 
-                foreach (var postingList in dict.Values)
+                //сортировка внутри терма
+                foreach (var postingList in localdict.Values)
                 {
                     postingList.Sort();
                 }
 
-                var sortedDict = new SortedDictionary<string, List<(string, int, int)>>(dict);
-
-                using (var streamWriter = File.CreateText(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict"))
+                var sortedDict = new SortedDictionary<string, List<(string, int, int)>>(localdict);
+                using (var streamWriter = File.CreateText(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict" + $"{docCounter}"))
                 {
+                    /////////////////////////////////////////////////////////////////////////////////
+                    //Console.WriteLine($" ++++++++++++++++++++++++++++++++++++++++++++++++++ {docCounter}");
                     foreach (var element in sortedDict)
                     {
                         streamWriter.Write(element.Key);
+                        ///////////////////////////////////////////////////////////////////////////
+                        //Console.WriteLine(element.Key);
                         foreach (var docId in element.Value)
                         {
                             streamWriter.Write($" {docId}");
+                            ///////////////////////////////////////////////////////////////////////
+                            //Console.Write($" {docId}");
                         }
                         streamWriter.WriteLine();
+                        ////////////////////////////////////////////////////////////////////////////
+                        //Console.WriteLine();
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// сливание локальных словарей
+        /// </summary>
+        public void Merge()
+        {
+            var dictBlocks = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict");
+
+            Parallel.ForEach(dictBlocks, block =>
+            {
+                var streamReader = new StreamReader(block);
+                using (streamReader)
+                {
+                    var lines = File.ReadAllLines(block);
+                    foreach (var line in lines)
+                    {
+                        listWithTermsAndPostingLists.Add(line);
+                    }
+                }
+            });
         }
     }
 }

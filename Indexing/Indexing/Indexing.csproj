@@ -86,6 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Texts\FifthFile.txt" />
     <Content Include="Texts\FirstFile.txt" />
     <Content Include="Texts\FourthFile.txt" />
     <Content Include="Texts\SecondFile.txt" />
