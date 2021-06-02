@@ -80,7 +80,9 @@ namespace Indexing
                 indxr.StemFile(pathFile, docCounter);
                 docCounter++;
             }
+            indxr.Merge();
             var result = indxr.GetDict();
+            var srchr = new Searcher();
             Loop(result);
         }
     }

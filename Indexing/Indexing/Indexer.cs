@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -108,7 +109,7 @@ namespace Indexing
         public void Merge()
         {
             var dictBlocks = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict");
-
+            var dictList = new ConcurrentBag<string>();
             Parallel.ForEach(dictBlocks, block =>
             {
                 var streamReader = new StreamReader(block);
@@ -117,7 +118,7 @@ namespace Indexing
                     var lines = File.ReadAllLines(block);
                     foreach (var line in lines)
                     {
-                        listWithTermsAndPostingLists.Add(line);
+                        dictList.Add(line);
                     }
                 }
             });
