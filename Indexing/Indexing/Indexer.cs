@@ -122,6 +122,23 @@ namespace Indexing
                     }
                 }
             });
+
+            foreach (var termInfoString in dictList)
+            {
+                var term = termInfoString.Split(' ')[0];
+                var termInfo = termInfoString.Split(' ');
+                var postingList = new List<(string, int, int)>();
+                var queue = new PriorityQueue<int>();
+
+                for (var i = 1; i < postingList.Count; i++)
+                {
+                    var path = termInfo[i].Split(',', '(', ')')[0];
+                    var stringNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[1]);
+                    var wordNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[2]);
+                    postingList.Add((path, stringNumber, wordNumber));
+                }
+                queue.Enqueue(term, postingList);
+            }
         }
     }
 }
