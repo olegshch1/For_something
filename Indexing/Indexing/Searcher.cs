@@ -13,7 +13,7 @@ namespace Indexing
 
         }
 
-        public string Search(string query)
+        /*public string Search(string query)
         {
             var terms = query.Split(' ');
             var qstack = new Stack<string>();
@@ -47,6 +47,6 @@ namespace Indexing
             {
                 Find(qstack.Pop());
             }
-        }
+        }*/
     }
 }

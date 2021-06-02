@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PriorityQueues;
 
 namespace Indexing
 {
@@ -110,6 +111,7 @@ namespace Indexing
         {
             var dictBlocks = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict");
             var dictList = new ConcurrentBag<string>();
+            var queue = new BinaryHeap<List<(string, int, int)>, string>(PriorityQueueType.Minimum);
             Parallel.ForEach(dictBlocks, block =>
             {
                 var streamReader = new StreamReader(block);
@@ -128,7 +130,6 @@ namespace Indexing
                 var term = termInfoString.Split(' ')[0];
                 var termInfo = termInfoString.Split(' ');
                 var postingList = new List<(string, int, int)>();
-                var queue = new PriorityQueue<int>();
 
                 for (var i = 1; i < postingList.Count; i++)
                 {
@@ -137,7 +138,39 @@ namespace Indexing
                     var wordNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[2]);
                     postingList.Add((path, stringNumber, wordNumber));
                 }
-                queue.Enqueue(term, postingList);
+                queue.Enqueue(postingList, term);
+            }
+
+            var finalPath = ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict" + Path.DirectorySeparatorChar + "FinalIndex";
+            Directory.CreateDirectory(finalPath);
+
+            using (var streamWriter = new StreamWriter(finalPath + Path.DirectorySeparatorChar + "FinalIndexText"))
+            {
+                while (queue.Count != 0)
+                {
+                    var topPriority = queue.PeekPriority;
+                    var headElement = queue.Dequeue();
+
+                    while (queue.Count != 0 && topPriority == queue.PeekPriority)
+                    {
+                        var nextPostingList = queue.Dequeue();
+
+                        foreach (var el in nextPostingList)
+                        {
+                            headElement.Add(el);
+                        }
+                    }
+
+                    headElement.Sort();
+                    streamWriter.Write($"{topPriority} ");
+                    foreach (var element in headElement)
+                    {
+                        streamWriter.Write($" {element}");
+                    }
+
+                    streamWriter.WriteLine();
+
+                }
             }
         }
     }
