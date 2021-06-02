@@ -10,7 +10,7 @@ namespace Indexing
     /// <summary>
     /// класс, в котором содержимое из файла токенизируется, стеммится и индексируется по SPIMI
     /// </summary>
-    public class Stemmer
+    public class Indexer
     {
         /// <summary>
         /// библиотечный стеммер
@@ -20,15 +20,15 @@ namespace Indexing
         /// <summary>
         /// здесь хранится результат индексирования
         /// </summary>
-        private Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<(string, int, int)>> dict = new Dictionary<string, List<(string, int, int)>>();
 
-        public Stemmer() {}
+        public Indexer() {}
 
         /// <summary>
         /// взятие результата
         /// </summary>
         /// <returns>терм-места</returns>
-        public Dictionary<string, List<string>> GetDict()
+        public Dictionary<string, List<(string, int, int)>> GetDict()
         {
             return dict;
         }
@@ -55,20 +55,40 @@ namespace Indexing
                         var ss = stem.Stem(res);
                         if (!dict.ContainsKey(ss))
                         {
-                            var local = new List<string>();
-                            local.Add($"path= {path}, string= {counterLine.ToString()}, word= {counterWord.ToString()}");
+                            var local = new List<(string, int, int)>();
+                            local.Add(($"path= {path}", counterLine, counterWord));
                             dict.Add(ss, local);
                         }
                         else
                         {
-                            List<string> value;
+                            List<(string, int, int)> value;
                             dict.TryGetValue(ss, out value);
-                            value.Add($"path= {path}, string= {counterLine.ToString()}, word= {counterWord.ToString()}");
+                            value.Add(($"path= {path}", counterLine, counterWord));
                         }
                         counterWord++;
                     }
                     counterLine++;
                     line = reader.ReadLine();
+                }
+
+                foreach (var postingList in dict.Values)
+                {
+                    postingList.Sort();
+                }
+
+                var sortedDict = new SortedDictionary<string, List<(string, int, int)>>(dict);
+
+                using (var streamWriter = File.CreateText(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict"))
+                {
+                    foreach (var element in sortedDict)
+                    {
+                        streamWriter.Write(element.Key);
+                        foreach (var docId in element.Value)
+                        {
+                            streamWriter.Write($" {docId}");
+                        }
+                        streamWriter.WriteLine();
+                    }
                 }
             }
         }

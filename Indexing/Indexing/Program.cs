@@ -14,7 +14,7 @@ namespace Indexing
         /// вывод на печать всего словаря
         /// </summary>
         /// <param name="result"></param>
-        static void Print(Dictionary<string, List<string>> result)
+        static void Print(Dictionary<string, List<(string, int, int)>> result)
         {
             foreach (var item in result)
             {
@@ -31,7 +31,7 @@ namespace Indexing
         /// петля поиска
         /// </summary>
         /// <param name="dict">то, где ищем</param>
-        static void Loop(Dictionary<string, List<string>> dict)
+        static void Loop(Dictionary<string, List<(string, int, int)>> dict)
         {
             Console.WriteLine("Search is running");
             Console.WriteLine("Write 'exit' for exit");
@@ -72,7 +72,7 @@ namespace Indexing
         /// </summary>
         static void Main(string[] args)
         {
-            var stemmer = new Stemmer();
+            var stemmer = new Indexer();
             var files = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Texts");
             foreach (var pathFile in files)
             {

@@ -79,7 +79,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stemmer.cs" />
+    <Compile Include="Indexer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -90,6 +90,9 @@
     <Content Include="Texts\FourthFile.txt" />
     <Content Include="Texts\SecondFile.txt" />
     <Content Include="Texts\ThirdFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TextedDict\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
