@@ -18,11 +18,11 @@ namespace Indexing
         /// библиотечный стеммер
         /// </summary>
         private Iveonik.Stemmers.RussianStemmer stem = new Iveonik.Stemmers.RussianStemmer();
-        
+
         /// <summary>
-        /// здесь хранится результат индексирования
+        /// здесь хранится путь
         /// </summary>
-        private Dictionary<string, List<(string, int, int)>> dict = new Dictionary<string, List<(string, int, int)>>();
+        private string indexPath;
 
         public Indexer() {}
 
@@ -30,9 +30,9 @@ namespace Indexing
         /// взятие результата
         /// </summary>
         /// <returns>терм-места</returns>
-        public Dictionary<string, List<(string, int, int)>> GetDict()
+        public string GetIndexPath()
         {
-            return dict;
+            return indexPath;
         }
 
         /// <summary>
@@ -110,6 +110,10 @@ namespace Indexing
         public void Merge()
         {
             var dictBlocks = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict");
+            for(int i = 0; i < dictBlocks.Length; i++)
+            {
+                Console.WriteLine($"merging block {dictBlocks[i]}");
+            }
             var dictList = new ConcurrentBag<string>();
             var queue = new BinaryHeap<List<(string, int, int)>, string>(PriorityQueueType.Minimum);
             Parallel.ForEach(dictBlocks, block =>
@@ -143,7 +147,7 @@ namespace Indexing
 
             var finalPath = ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict" + Path.DirectorySeparatorChar + "FinalIndex";
             Directory.CreateDirectory(finalPath);
-
+            indexPath = finalPath;
             using (var streamWriter = new StreamWriter(finalPath + Path.DirectorySeparatorChar + "FinalIndexText"))
             {
                 while (queue.Count != 0)

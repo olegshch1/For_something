@@ -8,12 +8,14 @@ namespace Indexing
 {
     public class Searcher
     {
-        public Searcher()
-        {
+        private readonly string path;
 
+        public Searcher(string path)
+        {
+            this.path = path;
         }
 
-        /*public string Search(string query)
+        public List<(string,int,int)> Search(string query)
         {
             var terms = query.Split(' ');
             var qstack = new Stack<string>();
@@ -47,6 +49,6 @@ namespace Indexing
             {
                 Find(qstack.Pop());
             }
-        }*/
+        }
     }
 }

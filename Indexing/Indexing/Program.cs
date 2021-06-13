@@ -31,7 +31,7 @@ namespace Indexing
         /// петля поиска
         /// </summary>
         /// <param name="dict">то, где ищем</param>
-        static void Loop(Dictionary<string, List<(string, int, int)>> dict)
+        static void Loop(Searcher searcher)
         {
             Console.WriteLine("Search is running");
             Console.WriteLine("Write 'exit' for exit");
@@ -41,27 +41,18 @@ namespace Indexing
             var s = Console.ReadLine();
             while (s != "exit")
             {
-                if (s == "print dict") Print(dict);
-                else
+                var query = "";
+                foreach (var res in s.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    foreach (var res in s.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                    if (res == "&" || res == "|")
+                        query = query + res + " ";
+                    else
                     {
                         var ss = stem.Stem(res);
-                        Console.WriteLine("'" + ss + "'");
-                        if (dict.ContainsKey(ss))
-                        {
-                            var paths = dict[ss];
-                            foreach (var path in paths)
-                            {
-                                Console.WriteLine(path);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Absolutely nothing");
-                        }
-                    }
+                        query = query + ss + " ";
+                    }                           
                 }
+                searcher.Search(query);
                 Console.WriteLine("==================================");
                 s = Console.ReadLine();
             }
@@ -73,7 +64,8 @@ namespace Indexing
         static void Main(string[] args)
         {
             var indxr = new Indexer();
-            var files = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Texts");
+            var textsPath = ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "Texts";
+            var files = Directory.GetFiles(textsPath);
             var docCounter = 1;
             foreach (var pathFile in files)
             {
@@ -81,9 +73,8 @@ namespace Indexing
                 docCounter++;
             }
             indxr.Merge();
-            var result = indxr.GetDict();
-            var srchr = new Searcher();
-            Loop(result);
+            var srchr = new Searcher(indxr.GetIndexPath());
+            Loop(srchr);
         }
     }
 }
