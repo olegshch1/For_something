@@ -131,7 +131,7 @@ namespace Indexing
                 var termInfo = termInfoString.Split(' ');
                 var postingList = new List<(string, int, int)>();
 
-                for (var i = 1; i < postingList.Count; i++)
+                for (var i = 1; i < termInfo.Count(); i++)
                 {
                     var path = termInfo[i].Split(',', '(', ')')[0];
                     var stringNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[1]);
@@ -167,9 +167,7 @@ namespace Indexing
                     {
                         streamWriter.Write($" {element}");
                     }
-
                     streamWriter.WriteLine();
-
                 }
             }
         }
