@@ -16,7 +16,7 @@ namespace Indexing
             this.path = path;
         }
 
-        public List<(string,int,int)> Search(string query)
+        public string Search(string query)
         {
             var terms = query.Split(' ');
             var qstack = new Stack<string>();
@@ -28,14 +28,14 @@ namespace Indexing
                         {
                             var t1 = qstack.Pop();
                             var t2 = qstack.Pop();
-                            qstack.Push(AndOp(t1, t2));
+                            //qstack.Push(AndOp(t1, t2));
                             break;
                         }
                     case "|":
                         {
                             var t1 = qstack.Pop();
                             var t2 = qstack.Pop();
-                            qstack.Push(OrOp(t1, t2));
+                            //qstack.Push(OrOp(t1, t2));
                             break;
                         }
                     default:
@@ -46,10 +46,9 @@ namespace Indexing
                 }
             }
 
-            if(qstack.Count == 1)
-            {
-                Find(qstack.Pop());
-            }
+            
+            return Find(qstack.Pop());
+            
         }
 
         private string Find(string term)
@@ -68,7 +67,7 @@ namespace Indexing
             }
         }
 
-        OrOp(string term1, string term2)
+        /*OrOp(string term1, string term2)
         {
             var splitInfo1 = Find(term1).Split(' ');
             var splitInfo2 = Find(term2).Split(' ');
@@ -89,11 +88,17 @@ namespace Indexing
                 var wordNumber = Convert.ToInt32(splitInfo2[i + 2]);
                 ind2.Add((path, lineNumber, wordNumber));
             }
-        }
+            var ind3 = ind1;
+            for(int i = 0; i < ind2.Count; i++)
+            {
+                ind3.Add(ind2[i]);
+            }
+            var res = ""
+        }*/
 
-        AndOp(string term1, string term2)
+        /*AndOp(string term1, string term2)
         {
 
-        }
+        }*/
     }
 }
