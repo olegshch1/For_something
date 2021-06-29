@@ -20,9 +20,14 @@ namespace Indexing
         private Iveonik.Stemmers.RussianStemmer stem = new Iveonik.Stemmers.RussianStemmer();
 
         /// <summary>
-        /// здесь хранится путь
+        /// здесь хранится путь к индексу
         /// </summary>
         private string indexPath;
+
+        /// <summary>
+        /// путь к папке текстовых словарей
+        /// </summary>
+        private string textedDictPath = ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict";
 
         public Indexer() {}
 
@@ -38,7 +43,7 @@ namespace Indexing
         /// <summary>
         /// обрабатывает текстовый файл на русском языке, создает текстовый локальный словарь
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">путь файла</param>
         public void StemFile(string path, int docCounter)
         {
             var localdict = new Dictionary<string, List<(string, int, int)>>();
@@ -81,7 +86,8 @@ namespace Indexing
                 }
 
                 var sortedDict = new SortedDictionary<string, List<(string, int, int)>>(localdict);
-                using (var streamWriter = File.CreateText(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict" + $"{docCounter}"))
+                Directory.CreateDirectory(textedDictPath);
+                using (var streamWriter = File.CreateText(textedDictPath + $"{docCounter}"))
                 {
                     /////////////////////////////////////////////////////////////////////////////////
                     //Console.WriteLine($" ++++++++++++++++++++++++++++++++++++++++++++++++++ {docCounter}");
@@ -109,7 +115,7 @@ namespace Indexing
         /// </summary>
         public void Merge()
         {
-            var dictBlocks = Directory.GetFiles(".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict");
+            var dictBlocks = Directory.GetFiles(textedDictPath);
             for(int i = 0; i < dictBlocks.Length; i++)
             {
                 Console.WriteLine($"merging block {dictBlocks[i]}");
@@ -145,10 +151,10 @@ namespace Indexing
                 queue.Enqueue(postingList, term);
             }
 
-            var finalPath = ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "TextedDict" + Path.DirectorySeparatorChar + "FinalIndex";
+            var finalPath = textedDictPath + Path.DirectorySeparatorChar + "FinalIndex";
             Directory.CreateDirectory(finalPath);
-            indexPath = finalPath;
-            using (var streamWriter = new StreamWriter(finalPath + Path.DirectorySeparatorChar + "FinalIndexText"))
+            indexPath = finalPath + Path.DirectorySeparatorChar + "FinalIndexText";
+            using (var streamWriter = new StreamWriter(indexPath))
             {
                 while (queue.Count != 0)
                 {

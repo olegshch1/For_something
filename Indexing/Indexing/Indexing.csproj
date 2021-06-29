@@ -96,8 +96,6 @@
     <Content Include="Texts\SecondFile.txt" />
     <Content Include="Texts\ThirdFile.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TextedDict\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
