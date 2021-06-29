@@ -14,16 +14,12 @@ namespace Indexing
         /// вывод на печать всего словаря
         /// </summary>
         /// <param name="result"></param>
-        static void Print(Dictionary<string, List<(string, int, int)>> result)
+        static void Print(string path)
         {
-            foreach (var item in result)
+            var line = File.ReadAllLines(path);
+            foreach (var l in line)
             {
-                Console.WriteLine(item.Key);
-                foreach (var path in item.Value)
-                {
-                    Console.WriteLine(path);
-                }
-                Console.WriteLine(" ");
+                Console.WriteLine(l);
             }
         }
 
@@ -72,6 +68,7 @@ namespace Indexing
                 docCounter++;
             }
             indxr.Merge();
+            Print(indxr.GetIndexPath());
             var srchr = new Searcher(indxr.GetIndexPath());
             Loop(srchr);
         }

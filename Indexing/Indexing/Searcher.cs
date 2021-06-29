@@ -58,6 +58,13 @@ namespace Indexing
             using (var streamReader = new StreamReader(buferredStream))
             {
                 string line = "";
+                /////////////////////////////////////////////
+                var docLine = File.ReadAllLines(path);
+                foreach (var l in docLine)
+                {
+                    Console.WriteLine(l);
+                }
+                /////////////////////////////////////////////
                 do
                 {
                     line = streamReader.ReadLine();
