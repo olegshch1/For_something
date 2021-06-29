@@ -40,7 +40,7 @@ namespace Indexing
                         }
                     default:
                         {
-                            qstack.Push(term);
+                            qstack.Push(Find(term));
                             break;
                         }
                 }
@@ -61,6 +61,7 @@ namespace Indexing
                 do
                 {
                     line = streamReader.ReadLine();
+                    //Console.WriteLine(line);
                 }
                 while (!line.StartsWith(term) && line.Split(' ')[0] != term);
                 return line;

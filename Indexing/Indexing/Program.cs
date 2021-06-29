@@ -35,7 +35,6 @@ namespace Indexing
         {
             Console.WriteLine("Search is running");
             Console.WriteLine("Write 'exit' for exit");
-            Console.WriteLine("Write 'print dict' for seeing all dictionary");
 
             var stem = new Iveonik.Stemmers.RussianStemmer();
             var s = Console.ReadLine();
