@@ -57,11 +57,11 @@ namespace Indexing
             using (var buferredStream = new BufferedStream(fileStream))
             using (var streamReader = new StreamReader(buferredStream))
             {
-                var line = "";
+                string line = "";
                 do
                 {
                     line = streamReader.ReadLine();
-                    //Console.WriteLine(line);
+                    Console.WriteLine(line);
                 }
                 while (!line.StartsWith(term) && line.Split(' ')[0] != term);
                 return line;
