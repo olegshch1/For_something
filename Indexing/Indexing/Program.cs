@@ -36,18 +36,17 @@ namespace Indexing
             var s = Console.ReadLine();
             while (s != "exit")
             {
-                var query = "";
+                var query = new Queue<string>();
                 foreach (var res in s.Split(new[] { ' ', ',', '.', '-', ':', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (res == "&" || res == "|")
-                        query = query + res + " ";
+                        query.Enqueue(res);
                     else
                     {
-                        var ss = stem.Stem(res);
-                        query = query + ss + " ";
+                        query.Enqueue(stem.Stem(res));
                     }                           
                 }
-                searcher.Search(query);
+                Console.WriteLine(searcher.Search(query));
                 Console.WriteLine("==================================");
                 s = Console.ReadLine();
             }

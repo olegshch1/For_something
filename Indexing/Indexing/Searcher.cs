@@ -16,39 +16,43 @@ namespace Indexing
             this.path = path;
         }
 
-        public string Search(string query)
+        /// <summary>
+        /// Проводит обработку запроса в обратной польской нотации. Допустимы операции "и" и "или"
+        /// </summary>
+        /// <param name="query">запрос, представляемый в виде очереди из термов и операций в обратной польской нотации</param>
+        /// <returns></returns>
+        public string Search(Queue<string> query)
         {
-            var terms = query.Split(' ');
             var qstack = new Stack<string>();
-            foreach(var term in terms)
+            while (query.Count > 0)
             {
-                switch (term)
-                {
-                    case "&":
-                        {
-                            var t1 = qstack.Pop();
-                            var t2 = qstack.Pop();
-                            //qstack.Push(AndOp(t1, t2));
-                            break;
-                        }
-                    case "|":
-                        {
-                            var t1 = qstack.Pop();
-                            var t2 = qstack.Pop();
-                            //qstack.Push(OrOp(t1, t2));
-                            break;
-                        }
-                    default:
-                        {
-                            qstack.Push(Find(term));
-                            break;
-                        }
-                }
-            }
+                var term = query.Dequeue();               
+                    switch (term)
+                    {
+                        case "&":
+                            {
+                                var t1 = qstack.Pop();
+                                var t2 = qstack.Pop();
+                                //qstack.Push(AndOp(t1, t2));
+                                break;
+                            }
+                        case "|":
+                            {
+                                var t1 = qstack.Pop();
+                                var t2 = qstack.Pop();
+                                //qstack.Push(OrOp(t1, t2));
+                                break;
+                            }
+                        default:
+                            {
+                                qstack.Push(Find(term));
+                                break;
+                            }
+                    }
+                
 
-            
-            return Find(qstack.Pop());
-            
+            }
+            return Find(qstack.Pop());            
         }
 
         private string Find(string term)
@@ -63,7 +67,7 @@ namespace Indexing
                 do
                 {
                     line = streamReader.ReadLine();
-                    Console.WriteLine(line);
+                    //Console.WriteLine(line);
                 }
                 while (!line.StartsWith(term) && line.Split(' ')[0] != term);
                 return line;
