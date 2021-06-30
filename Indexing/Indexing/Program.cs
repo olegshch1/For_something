@@ -68,7 +68,7 @@ namespace Indexing
                 docCounter++;
             }
             indxr.Merge();
-            Print(indxr.GetIndexPath());
+            //Print(indxr.GetIndexPath());
             var srchr = new Searcher(indxr.GetIndexPath());
             Loop(srchr);
         }

@@ -64,14 +64,14 @@ namespace Indexing
                         if (!localdict.ContainsKey(ss))
                         {
                             var local = new List<(string, int, int)>();
-                            local.Add(($"path= {path}", counterLine, counterWord));
+                            local.Add(($"{path}", counterLine, counterWord));
                             localdict.Add(ss, local);
                         }
                         else
                         {
                             List<(string, int, int)> value;
                             localdict.TryGetValue(ss, out value);
-                            value.Add(($"path= {path}", counterLine, counterWord));
+                            value.Add(($"{path}", counterLine, counterWord));
                         }
                         counterWord++;
                     }
@@ -95,12 +95,12 @@ namespace Indexing
                     {
                         streamWriter.Write(element.Key);
                         ///////////////////////////////////////////////////////////////////////////
-                        Console.WriteLine(element.Key);
+                        //Console.WriteLine(element.Key);
                         foreach (var docId in element.Value)
                         {
-                            streamWriter.Write($" {docId}");
+                            streamWriter.Write($"+{docId}");
                             ///////////////////////////////////////////////////////////////////////
-                            Console.WriteLine($" {docId}");
+                            //Console.WriteLine($"{docId}");
                         }
                         streamWriter.WriteLine();
                         ////////////////////////////////////////////////////////////////////////////
@@ -137,15 +137,16 @@ namespace Indexing
 
             foreach (var termInfoString in dictList)
             {
-                var term = termInfoString.Split(' ')[0];
-                var termInfo = termInfoString.Split(' ');
+                var term = termInfoString.Split('+')[0];
+                var termInfo = termInfoString.Split('+');
                 var postingList = new List<(string, int, int)>();
 
                 for (var i = 1; i < termInfo.Count(); i++)
                 {
-                    var path = termInfo[i].Split(',', '(', ')')[0];
-                    var stringNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[1]);
-                    var wordNumber = Convert.ToInt32(termInfo[i].Split(',', '(', ')')[2]);
+                    var elements = termInfo[i].Split(',');
+                    var path = elements[0].Trim(new char[] {'(',' '});
+                    var stringNumber = Convert.ToInt32(elements[1]);
+                    var wordNumber = Convert.ToInt32(elements[2].Trim(new char[] { ')', ' '}));
                     postingList.Add((path, stringNumber, wordNumber));
                 }
                 queue.Enqueue(postingList, term);
