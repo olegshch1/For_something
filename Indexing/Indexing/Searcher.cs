@@ -121,6 +121,10 @@ namespace Indexing
             term1.Sort();
             term2.Sort();
             var res = term1.Intersect(term2, new IntersectComparer()).ToList();
+            if (res.Count == 0)
+            {
+                res.Add(("Nothing found", -1, -1));
+            }
             return res;
         }
     }
