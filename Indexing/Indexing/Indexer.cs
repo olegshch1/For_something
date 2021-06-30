@@ -87,7 +87,7 @@ namespace Indexing
 
                 var sortedDict = new SortedDictionary<string, List<(string, int, int)>>(localdict);
                 Directory.CreateDirectory(textedDictPath);
-                using (var streamWriter = File.CreateText(textedDictPath + $"{docCounter}"))
+                using (var streamWriter = File.CreateText(textedDictPath + Path.DirectorySeparatorChar + $"{docCounter}"))
                 {
                     /////////////////////////////////////////////////////////////////////////////////
                     //Console.WriteLine($" ++++++++++++++++++++++++++++++++++++++++++++++++++ {docCounter}");
@@ -95,12 +95,12 @@ namespace Indexing
                     {
                         streamWriter.Write(element.Key);
                         ///////////////////////////////////////////////////////////////////////////
-                        //Console.WriteLine(element.Key);
+                        Console.WriteLine(element.Key);
                         foreach (var docId in element.Value)
                         {
                             streamWriter.Write($" {docId}");
                             ///////////////////////////////////////////////////////////////////////
-                            //Console.Write($" {docId}");
+                            Console.WriteLine($" {docId}");
                         }
                         streamWriter.WriteLine();
                         ////////////////////////////////////////////////////////////////////////////
