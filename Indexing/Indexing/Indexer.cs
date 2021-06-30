@@ -173,13 +173,14 @@ namespace Indexing
                     }
 
                     headElement.Sort();
-                    streamWriter.Write($"{topPriority} ");
+                    streamWriter.Write($"{topPriority}");
                     foreach (var element in headElement)
                     {
-                        streamWriter.Write($" {element}");
+                        streamWriter.Write($"+{element}");
                     }
                     streamWriter.WriteLine();
                 }
+                streamWriter.Write("EOF");
             }
         }
     }
