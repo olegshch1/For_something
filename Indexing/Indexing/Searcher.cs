@@ -40,7 +40,7 @@ namespace Indexing
                             {
                                 var t1 = qstack.Pop();
                                 var t2 = qstack.Pop();
-                                //qstack.Push(OrOp(t1, t2));
+                                qstack.Push(OrOp(t1, t2));
                                 break;
                             }
                         default:
@@ -97,34 +97,12 @@ namespace Indexing
             }
         }
 
-        /*OrOp(string term1, string term2)
+        List<(string, int, int)> OrOp(List<(string, int, int)> term1, List<(string, int, int)> term2)
         {
-            var splitInfo1 = Find(term1).Split(' ');
-            var splitInfo2 = Find(term2).Split(' ');
-            Find(term2);
-            var ind1 = new List<(string, int, int)>();
-            var ind2 = new List<(string, int, int)>();
-            for(int i = 1; i < splitInfo1.Length; i = i + 3)
-            {
-                var path = splitInfo1[i];
-                var lineNumber = Convert.ToInt32(splitInfo1[i + 1]);
-                var wordNumber = Convert.ToInt32(splitInfo1[i + 2]);
-                ind1.Add((path, lineNumber, wordNumber));
-            }
-            for (int i = 1; i < splitInfo2.Length; i = i + 3)
-            {
-                var path = splitInfo2[i];
-                var lineNumber = Convert.ToInt32(splitInfo2[i + 1]);
-                var wordNumber = Convert.ToInt32(splitInfo2[i + 2]);
-                ind2.Add((path, lineNumber, wordNumber));
-            }
-            var ind3 = ind1;
-            for(int i = 0; i < ind2.Count; i++)
-            {
-                ind3.Add(ind2[i]);
-            }
-            var res = ""
-        }*/
+            var res = term1.Concat(term2).ToList();
+            res.Sort();
+            return res;
+        }
 
         /*AndOp(string term1, string term2)
         {
