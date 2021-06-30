@@ -1,11 +1,10 @@
-﻿using System;
+﻿using PriorityQueues;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using PriorityQueues;
 
 namespace Indexing
 {
@@ -35,10 +34,7 @@ namespace Indexing
         /// взятие результата
         /// </summary>
         /// <returns>терм-места</returns>
-        public string GetIndexPath()
-        {
-            return indexPath;
-        }
+        public string GetIndexPath() => indexPath;
 
         /// <summary>
         /// обрабатывает текстовый файл на русском языке, создает текстовый локальный словарь
@@ -89,22 +85,14 @@ namespace Indexing
                 Directory.CreateDirectory(textedDictPath);
                 using (var streamWriter = File.CreateText(textedDictPath + Path.DirectorySeparatorChar + $"{docCounter}"))
                 {
-                    /////////////////////////////////////////////////////////////////////////////////
-                    //Console.WriteLine($" ++++++++++++++++++++++++++++++++++++++++++++++++++ {docCounter}");
                     foreach (var element in sortedDict)
                     {
                         streamWriter.Write(element.Key);
-                        ///////////////////////////////////////////////////////////////////////////
-                        //Console.WriteLine(element.Key);
                         foreach (var docId in element.Value)
                         {
                             streamWriter.Write($"+{docId}");
-                            ///////////////////////////////////////////////////////////////////////
-                            //Console.WriteLine($"{docId}");
                         }
                         streamWriter.WriteLine();
-                        ////////////////////////////////////////////////////////////////////////////
-                        //Console.WriteLine();
                     }
                 }
             }

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Iveonik.Stemmers;
 using System.IO;
 
 namespace Indexing
@@ -13,7 +9,7 @@ namespace Indexing
         /// <summary>
         /// вывод на печать всего словаря
         /// </summary>
-        /// <param name="result"></param>
+        /// <param name="result">итоговый словарь</param>
         static void Print(string path)
         {
             var line = File.ReadAllLines(path);
@@ -30,7 +26,8 @@ namespace Indexing
         static void Loop(Searcher searcher)
         {
             Console.WriteLine("Search is running");
-            Console.WriteLine("Write 'exit' for exit");
+            Console.WriteLine("команда 'exit' для закрытия поисковика exit");
+            Console.WriteLine("программа принимает запрос, состоящий из слов, операций И ('&'), ИЛИ ('|'), записанных в обратной польской нотации");
 
             var stem = new Iveonik.Stemmers.RussianStemmer();
             var s = Console.ReadLine();
@@ -67,7 +64,6 @@ namespace Indexing
                 docCounter++;
             }
             indxr.Merge();
-            //Print(indxr.GetIndexPath());
             var srchr = new Searcher(indxr.GetIndexPath());
             Loop(srchr);
         }
