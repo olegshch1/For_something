@@ -22,7 +22,7 @@ namespace Indexing
         /// </summary>
         /// <param name="query">запрос, представляемый в виде очереди из термов и операций в обратной польской нотации</param>
         /// <returns></returns>
-        public string Search(Queue<string> query)
+        public (string,int) Search(Queue<string> query)
         {
             var qstack = new Stack<List<(string, int, int)>>();
             while (query.Count > 0)
@@ -52,11 +52,13 @@ namespace Indexing
                 }                
             }
             var stringResult = "";
+            var uniqueDocCounter = new HashSet<string>();
             foreach(var element in qstack.Pop())
             {
+                uniqueDocCounter.Add(element.Item1);
                 stringResult += $"#####path= {element.Item1}, line= {element.Item2}, word= {element.Item3} ";
             }
-            return stringResult;
+            return (stringResult, uniqueDocCounter.Count);
         }
 
         /// <summary>

@@ -43,7 +43,9 @@ namespace Indexing
                         query.Enqueue(stem.Stem(res));
                     }                           
                 }
-                Console.WriteLine(searcher.Search(query));
+                var result = searcher.Search(query);
+                Console.WriteLine($"found in {result.Item2} docs");
+                Console.WriteLine(result.Item1);
                 Console.WriteLine("==================================");
                 s = Console.ReadLine();
             }
